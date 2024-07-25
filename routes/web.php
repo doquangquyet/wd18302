@@ -56,5 +56,20 @@ Route::get('/posts', function () {
     dd($data);
 //    return view('welcome');
 });
-Route::get('/products', [ProductController::class, 'index'])
-    ->name('products.index');
+// Route::get('/products', [ProductController::class, 'index'])
+//     ->name('products.index');
+// Route::get('/products/create', [ProductController::class, 'create'])
+//     ->name('products.create');
+// Route::resource('products', ProductController::class);
+
+Route::controller(ProductController::class)
+    ->name('products.')
+    ->prefix('products/'
+    )->group(function(){
+    Route::get('/','index')->name('layoutmain');
+    Route::get('/create','create')->name('create');
+    Route::POST('/store','store')->name('store');
+    Route::get('/{id}/edit','edit')->name('edit')->where('id','[0-9]+');
+    Route::PUT('/{id}/update','update')->name('update')->where('id','[0-9]+');;
+    Route::DELETE('/{id}/destroy','destroy')->name('destroy')->where('id','[0-9]+');;
+}); 
