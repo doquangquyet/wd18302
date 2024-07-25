@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use \App\Http\Controllers\ProductController;
+use \App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,3 +75,5 @@ Route::controller(ProductController::class)
     Route::PUT('/{id}/update','update')->name('update')->where('id','[0-9]+');;
     Route::DELETE('/{id}/destroy','destroy')->name('destroy')->where('id','[0-9]+');;
 }); 
+
+ Route::resource('category', CategoryController::class);
